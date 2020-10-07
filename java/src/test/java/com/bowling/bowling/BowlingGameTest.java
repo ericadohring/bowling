@@ -1,6 +1,7 @@
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+package com.bowling.bowling;
+
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -8,7 +9,7 @@ public class BowlingGameTest {
     private Game g;
 
     @BeforeEach
-    protected void setUp() throws Exception {
+    protected void setUp() {
         g = new Game();
     }
 
@@ -25,7 +26,7 @@ public class BowlingGameTest {
     }
 
     @Test
-    void testAllOnes() throws Exception {
+    void testAllOnes() {
         rollMany(20, 1);
         assertEquals(20, g.score());
     }

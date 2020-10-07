@@ -1,3 +1,5 @@
+package com.bowling.bowling;
+
 public class Game {
     private int score = 0;
 
