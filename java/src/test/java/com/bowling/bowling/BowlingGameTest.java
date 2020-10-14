@@ -48,6 +48,8 @@ public class BowlingGameTest {
     @Test
     void testOneStrike() {
         g.roll(10);
+        g.roll(0);
+
         g.roll(4);
         g.roll(3);
         rollMany(16, 0);
