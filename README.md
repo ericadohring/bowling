@@ -24,3 +24,11 @@ return 0), there are 2 techniques to move along: triangulation and removing dupl
 
 #### 10/07/2020
 - Styling on the slide deck is helpful - the green/red bar and the red for a compile error
+
+
+### 10/14/2020
+- It's odd we have to rollMany for the rest of the game - we think a better design
+would be to pass in an array of rolls for the whole game, not allowing the user to enter an invalid state
+OR to allow them to see a partially done score - modeling as an object, etc
+- His code with frame index is confusing
+- Left off trying to implement frames to see if that would be an easier concept to work with
