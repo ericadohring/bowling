@@ -7,6 +7,7 @@ class BowlingScoreRecorder
   end
 
   def record_frame(num_pins_roll_1:, num_pins_roll_2: )
+    raise "Game over" if @curr_frame_index == 10
     args = { num_pins_roll_1: num_pins_roll_1,
              num_pins_roll_2: num_pins_roll_2 }
       frames[curr_frame_index] =    {
