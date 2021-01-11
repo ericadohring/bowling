@@ -17,7 +17,7 @@ describe "BowlingScoreRecorder" do
 
     end
 
-    it "incrementally records the frame score" do
+    it "records the frame scores for all frames and raises an error if you go out of bounds" do
       frames = [
         { num_pins_roll_1: 7, num_pins_roll_2: 2 }, # 9
         { num_pins_roll_1: 6, num_pins_roll_2: 2 }, # 8
@@ -45,6 +45,22 @@ describe "BowlingScoreRecorder" do
       # Raises when you go outside the bounds
       extra_frame = { num_pins_roll_1: 7, num_pins_roll_2: 2 }
       expect { bowling_score_recorder.record_frame(extra_frame) }.to raise_error(RuntimeError)
+    end
+  end
+
+  # Cummulative score? We seem to do round score right now
+  # What about the last one being a spare?
+  describe "a game with spares" do
+    it "incrementally records the frame score" do
+      bowling_score_recorder = BowlingScoreRecorder.new
+
+      expect(bowling_score_recorder.frames).to eq([])
+      bowling_score_recorder.record_frame(num_pins_roll_1: 7, num_pins_roll_2: 3)
+      expect(bowling_score_recorder.frames).to eq([{ score: 10, is_strike: false, is_spare: true }])
+      bowling_score_recorder.record_frame(num_pins_roll_1: 6, num_pins_roll_2: 1)
+      expect(bowling_score_recorder.frames).to eq([
+                                                    { score: 17, is_strike: false, is_spare: true },
+                                                    { score: 7, is_strike: false, is_spare: false }])
     end
   end
 end
