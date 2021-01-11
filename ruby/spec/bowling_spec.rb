@@ -1,34 +1,21 @@
 load 'lib/game.rb'
 
+describe "BowlingScoreRecorder" do
 
-describe "BowlingGameSpec" do
+  describe "a game with no strikes or spares" do
+    it "incrementally records the frame score" do
+      bowling_score_recorder = BowlingScoreRecorder.new
 
-  before(:each) do
-    @g = Game.new
-  end
+      expect(bowling_score_recorder.frames).to eq([])
+      bowling_score_recorder.record_frame(num_pins_roll_1: 7, num_pins_roll_2: 2)
+      expect(bowling_score_recorder.frames).to eq([{score: 9, is_strike: false, is_spare: false}])
+      bowling_score_recorder.record_frame(num_pins_roll_1: 6, num_pins_roll_2: 1)
+      expect(bowling_score_recorder.frames).to eq([
+                                                    {score: 9, is_strike: false, is_spare: false},
+                                                    {score: 7, is_strike: false, is_spare: false},
+                                                  ])
 
-  it "has a failing test to remind us to put something here" do
-    expect( roll_many(20, 0)).to eq(0)
-  end
-
-  it "All ones gives a score of 20" do
-    expect(roll_many(20, 1)).to eq(20)
-  end
-
-  it "Spare doubles next roll" do
-    roll_many(2, 5)
-    roll_many(1, 3)
-    expect(roll_many(17, 0)).to eq(16)
-  end
-
-  def roll_many(times, pin)
-    i = 0
-    while (i < times)
-      @g.roll(pin)
-      i += 1
     end
-
-    @g.score
   end
 end
 
